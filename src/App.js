@@ -66,7 +66,7 @@ export default function MyApp() {
     if(id >= 0 && id < (+data.length))  setImageId(id);
   }
 
-  const handleKeyDown = event => {
+  const handleKeyDown = (event) => {
     if(event.key === "ArrowDown"){
       if(imageId%4 === 3) handleImageId(imageId - 3);
       else  handleImageId(imageId + 1);
