@@ -1,38 +1,78 @@
-.App {
+.background-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.flex-container-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-container-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.pagination-container {
+  padding: 10px;
+  height: 55vh;
+  width: 50vw;
+}
+
+.margin-auto {
+  width: 60vw;
+  height: 60vh;
+  margin: 0 auto;
+  padding-top: 20vh;
+  padding-bottom: 20vh;
+}
+
+.text-center {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.li-container {
+  padding: 5px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.img-icon {
+  height: 4rem;
+  width: 4rem;
+  margin-right: 5px;
+  border-radius: 5px;
+  background-size: cover;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.img-title {
+  font-size: 20px;
+  font-family: "Roboto";
+}
+
+.img-displayed {
+  border-radius: 10px;
+  background-size: cover;
+  height: 33rem;
+  width: 25rem;
+}
+
+.button {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  background-color: grey;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-left: 5px;
+  border-width: 0px;
+  text-align: center;
+  padding-left: 10px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.pageNavigator {
+  padding-left: 40px;
+  margin-top: auto;
+  justify-content: center;
 }
