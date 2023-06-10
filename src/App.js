@@ -37,7 +37,7 @@ const data = [
 const BLUE = "#87CEEB";
 
 let prv = -1;
-for (let i = 0; i < 35; i++) {
+for (let i = 0; i < 38; i++) {
   let num = Math.floor(Math.random() * 6);
   if (prv >= 0 && (num >= data.length || data[num].title === data[prv].title)) {
     i--;
