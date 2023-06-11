@@ -37,7 +37,7 @@ const data = [
 const BLUE = "#87CEEB";
 
 let prv = -1;
-for (let i = 0; i < 38; i++) {
+for (let i = 0; i < 35; i++) {
   let num = Math.floor(Math.random() * 6);
   if (prv >= 0 && (num >= data.length || data[num].title === data[prv].title)) {
     i--;
@@ -66,7 +66,8 @@ export default function MyApp() {
     if(id >= 0 && id < (+data.length))  setImageId(id);
   }
 
-  const handleKeyDown = (event) => {
+  function onKeyPressed(event) {
+    event.preventDefault();
     if(event.key === "ArrowDown"){
       if(imageId%4 === 3) handleImageId(imageId - 3);
       else  handleImageId(imageId + 1);
@@ -77,7 +78,7 @@ export default function MyApp() {
     }
     else if(event.key === "ArrowRight"){
       let curPage = Math.floor(imageId/4);
-      if(curPage + 1 < totalPages - 1) handleImageId(4 * (curPage + 1));
+      if(curPage + 1 < totalPages) handleImageId(4 * (curPage + 1));
     }
     else if(event.key === "ArrowLeft"){
       let curPage = Math.floor(imageId/4);
@@ -86,27 +87,29 @@ export default function MyApp() {
   };
 
   return (
-    <div onKeyDown = {handleKeyDown} >
-      <div className="flex-container-row margin-auto">
-        <div className="pagination-container text-center flex-container-col">
-          <ImageList imageId = {imageId}  handleImageId = {handleImageId} />
-          <div className="pageNavigator flex-container-row">
-            <button className="button" id="previousPage" onClick = {() => handleImageId(12 * (Math.floor(imageId/12)-1))} >
-              <b>&#60;</b>
-            </button>
-          
-            <PageNavigator imageId = {imageId} handleImageId = {handleImageId} />
+    <>
+      <div onKeyDown = {onKeyPressed} className = "take-full-space" tabIndex="0">
+        <div className="flex-container-row margin-auto">
+          <div className="pagination-container text-center flex-container-col">
+            <ImageList imageId = {imageId}  handleImageId = {handleImageId} />
+            <div className="pageNavigator flex-container-row">
+              <button className="button" id="previousPage" onClick = {() => handleImageId(12 * (Math.floor(imageId/12)-1))} >
+                <b>&#60;</b>
+              </button>
+            
+              <PageNavigator imageId = {imageId} handleImageId = {handleImageId} />
 
-            <button className="button" id="previousPage" onClick = {() => handleImageId(12 * (Math.floor(imageId/12)+1))}>
-              <b>&#62;</b>
-            </button>
+              <button className="button" id="previousPage" onClick = {() => handleImageId(12 * (Math.floor(imageId/12)+1))}>
+                <b>&#62;</b>
+              </button>
+            </div>
+          </div>
+          <div id="imageBox" className="flex-container-col">
+            <DisplayImage imageId = {imageId} />
           </div>
         </div>
-        <div id="imageBox" className="flex-container-col">
-          <DisplayImage imageId = {imageId} />
-        </div>
       </div>
-    </div>
+    </>
   );
 }
 
@@ -127,7 +130,7 @@ function ImageList({ imageId, handleImageId}) {
             fontColor = "white";
           }
           return (
-            <li key = {index} className = "li-container flex-container-row" style = {{backgroundColor : bgColor}} onClick = {() => handleImageId(4 * pageNo + index)}>
+            <li key = {4 * pageNo + index} className = "li-container flex-container-row" style = {{backgroundColor : bgColor}} onClick = {() => handleImageId(4 * pageNo + index)}>
               <img src = {imgSrc} className = "img-icon" alt = "" />
               <p className = "img-title" style = {{color : fontColor}} >{imgTitle}</p>
             </li>
