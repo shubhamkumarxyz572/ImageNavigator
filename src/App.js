@@ -62,10 +62,6 @@ for (let i = 0; i < totalPages; i++) {
 export default function MyApp() {
   const [imageId, setImageId] = useState(0);
 
-  function handleImageId(id){
-    if(id >= 0 && id < (+data.length))  setImageId(id);
-  }
-
   function onKeyPressed(event) {
     event.preventDefault();
     if(event.key === "ArrowDown"){
@@ -86,9 +82,17 @@ export default function MyApp() {
     }
   };
 
+  function handleImageId(id){
+    if(id >= 0 && id < (+data.length))  {
+      setImageId(id);
+      document.removeEventListener("keydown", onKeyPressed);
+    }
+  }
+  document.addEventListener("keydown", onKeyPressed);
+
   return (
     <>
-      <div onKeyDown = {onKeyPressed} className = "take-full-space" tabIndex="0">
+      <div>
         <div className="flex-container-row margin-auto">
           <div className="pagination-container text-center flex-container-col">
             <ImageList imageId = {imageId}  handleImageId = {handleImageId} />
